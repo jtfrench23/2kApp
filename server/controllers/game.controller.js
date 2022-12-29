@@ -1,9 +1,4 @@
 const Game = require('../models/game.model'); 
-module.exports.index = (request, response) => {  //We are exporting a key:val pair of index : function
-    response.json({     // This is where we're setting the API's response to the requesting client
-        message: "Hello World"
-    });
-}
 
 module.exports.createGame = (request, response) => {
     // Mongoose's "create" method is run using our Game model to add a new Game to our db's Game collection.
@@ -11,4 +6,17 @@ module.exports.createGame = (request, response) => {
     Game.create(request.body) //This will use whatever the body of the client's request sends over
         .then(game => response.json(game))
         .catch(err => response.json(err));
+}
+
+
+module.exports.getAllGames = (request, response) => {
+    Game.find({})
+        .then(games => {
+            console.log(games); //console logs are optional, but they are highly recommended for troubleshooting!
+            response.json(games);
+        })
+        .catch(err => {
+            console.log(err)
+            response.json(err)
+        })
 }
