@@ -1,9 +1,15 @@
-import React from 'react';
-import PersonForm from './components/PersonForm';
+import React, { useState } from 'react';
+import axios from 'axios';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Main from '../views/Main';
 function App() {
   return (
-    <div className="App">
-      <PersonForm/>
+    <div>
+    	<BrowserRouter>
+        <Routes>
+          <Route element={<Main/>} path="/home" default /> //adding the default makes this the default path
+        </Routes>
+    	</BrowserRouter>
     </div>
   );
 }
