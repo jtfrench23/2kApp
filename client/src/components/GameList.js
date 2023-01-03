@@ -7,7 +7,7 @@ const GameList = (props) => {
     	axios.get("http://localhost:8000/api/games")
     	.then((res)=>{
 	    console.log(res.data);
-            setPeople(res.data);
+            setGames(res.data);
 	})
     	.catch((err)=>{
             console.log(err);
@@ -18,8 +18,14 @@ const GameList = (props) => {
         <div>
             {
                 games.map((game, index)=>{
-                    // gamertag: { type: String },win: {type:Boolean},points: {type: Number},assists: {type: Number},steals: {type: Number},rebounds: {type: Number},turnovers: {type: Number},fouls: {type: Number}
-                return <p key={index}>{game.gamertag}, {game.win}, {game.point}, {game.assists}, {game.steal}, {game.rebounds}, {game.turnovers}, {game.fouls}</p>
+                    
+                // gamertag: { type: String },win: {type:Boolean},points: {type: Number},assists: {type: Number},steals: {type: Number},rebounds: {type: Number},turnovers: {type: Number},fouls: {type: Number}
+                if (game.win){
+                    return <p key={index}>{game.gamertag}, win, {game.points}, {game.assists}, {game.steals}, {game.rebounds}, {game.turnovers}, {game.fouls}</p>
+                }
+                else{
+                    return <p key={index}>{game.gamertag}, loss, {game.points}, {game.assists}, {game.steals}, {game.rebounds}, {game.turnovers}, {game.fouls}</p>
+                }
                 })
             }
         </div>

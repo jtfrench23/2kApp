@@ -16,12 +16,13 @@ const GameForm = () => {
         //prevent default behavior of the submit
         e.preventDefault();
         //make a post request to create a new person
-        axios.post('http://localhost:8000/api/people', {
+        axios.post('http://localhost:8000/api/game', {
             gamertag,
             win,
             points,
             assists,
             steals,
+            blocks,
             rebounds,
             turnovers,
             fouls

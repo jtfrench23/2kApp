@@ -6,6 +6,7 @@ const GameSchema = new mongoose.Schema({
     assists: {type: Number},
     steals: {type: Number},
     rebounds: {type: Number},
+    blocks: {type: Number},
     turnovers: {type: Number},
     fouls: {type: Number}
 }, { timestamps: true });

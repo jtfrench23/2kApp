@@ -8,10 +8,9 @@ const Main = (props) => {
     
     return (
         <div>
-    	/* PersonForm and Person List can both utilize the getter and setter established in their parent component: */
-           <GameForm games={games} setGames={setGames} />
+            <GameForm games={games} setGames={setGames} />
             <hr/>
-           <GameList games={games} setGames={setGames} />
+            <GameList games={games} setGames={setGames} />
         </div>
     )
 }
