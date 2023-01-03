@@ -1,5 +1,16 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import {
+    Paper,
+    FormControl,
+    FormControlLabel,
+    FormLabel,
+    Radio,
+    RadioGroup,
+    InputLabel,
+    OutlinedInput,
+    Button
+} from '@mui/material';
 const GameForm = () => {
     //keep track of what is being typed via useState hook
     const [gamertag, setGamerTag] = useState("");
@@ -33,47 +44,73 @@ const GameForm = () => {
             })
             .catch(err=>console.log(err))
     }
-    
+    const styles = {
+    paper: {
+        width: "15rem", padding: "1rem"
+    },
+    input: {
+        marginBottom: "1rem"
+    },
+    button: {
+        width: "100%"
+    },
+    RadioGroup: {
+        width: "100%",
+        marginBottom: "1rem"
+    }
+}
     return (
-        <form onSubmit={onSubmitHandler}>
-            <p>
-                <label>Gamertag</label><br/>
-                <input type="text" onChange = {(e)=>setGamerTag(e.target.value)}/>
-            </p>
-            <p>
-                <label>Win</label><br/>
-                <input type="bool" onChange = {(e)=>setWin(e.target.value)}/>
-            </p>
-            <p>
-                <label>Points</label><br/>
-                <input type="number" onChange = {(e)=>setPoints(e.target.value)}/>
-            </p>
-            <p>
-                <label>Assists</label><br/>
-                <input type="number" onChange = {(e)=>setAssists(e.target.value)}/>
-            </p>
-            <p>
-                <label>Steals</label><br/>
-                <input type="number" onChange = {(e)=>setSteals(e.target.value)}/>
-            </p>
-            <p>
-                <label>Rebounds</label><br/>
-                <input type="number" onChange = {(e)=>setRebounds(e.target.value)}/>
-            </p>
-            <p>
-                <label>Blocks</label><br/>
-                <input type="number" onChange = {(e)=>setBlocks(e.target.value)}/>
-            </p>
-            <p>
-                <label>Turnovers</label><br/>
-                <input type="number" onChange = {(e)=>setTurnovers(e.target.value)}/>
-            </p>
-            <p>
-                <label>Fouls</label><br/>
-                <input type="number" onChange = {(e)=>setFouls(e.target.value)}/>
-            </p>
-            <input type="submit"/>
-        </form>
+        <Paper elevation={3} style={styles.paper}>
+            <form onSubmit={onSubmitHandler}>
+                <h2>Add Game Stats</h2>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Gamertag</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setGamerTag(e.target.value)}/>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <FormLabel id="winSelect">Win/Loss</FormLabel>
+                    <RadioGroup
+                        defaultValue = {true}
+                        name="radio-buttons-group"
+                        onChange = {(e)=>setWin(e.target.value)}
+                    >
+                        <FormControlLabel value={true} control={<Radio />} label="Win" />
+                        <FormControlLabel value={false} control={<Radio />} label="Loss" />
+                    </RadioGroup>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Points</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setPoints(e.target.value)}/>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Assists</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setAssists(e.target.value)}/>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Steals</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setSteals(e.target.value)}/>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Rebounds</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setRebounds(e.target.value)}/>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Blocks</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setBlocks(e.target.value)}/>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Turnovers</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setTurnovers(e.target.value)}/>
+                </FormControl>
+                <FormControl variant="outlined" style={styles.input}>
+                    <InputLabel>Fouls</InputLabel>
+                    <OutlinedInput type="text" onChange = {(e)=>setFouls(e.target.value)}/>
+                </FormControl>
+                <Button type="submit" variant="contained" color="primary">
+                    Submit
+                </Button>
+            </form>
+        </Paper>
     )
 }
 export default GameForm;
